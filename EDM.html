@@ -55,10 +55,10 @@
     }
 
     .page img {
-      width: 30%;
-      height: auto;
-      max-height: 85%;
-      margin-bottom: 90px; /* Move the image up by adding bottom margin */
+      width: 60%;
+      max-height: 80%;
+      object-fit: contain;
+      margin-bottom: 20px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -86,72 +86,63 @@
     }
 
     button {
-      padding: 40px 100px !important; /* Increased padding for larger buttons */
-      font-size: 50px !important; /* Increased font size */
+      width: 300px !important; /* 強制按鈕寬度 */
+      height: 100px !important; /* 強制按鈕高度 */
+      font-size: 40px !important; /* 強制按鈕字體大小 */
       cursor: pointer;
       border: none;
-      background-color: #007BFF !important;
-      color: white !important;
+      background-color: #007BFF !important; /* 強制背景顏色 */
+      color: white !important; /* 強制文字顏色 */
       border-radius: 8px !important;
-      transition: background-color 0.3s !important;
+      transition: background-color 0.3s;
       margin: 20px !important;
-      opacity: 0.7 !important;
+      opacity: 0.9 !important;
     }
 
     button:hover {
-      background-color: #0056b3 !important;
+      background-color: #0056b3 !important; /* 強制 hover 時的背景顏色 */
       opacity: 1 !important;
     }
 
     .home-btn {
-      padding: 40px 100px !important; /* Match the padding of other buttons */
-      font-size: 50px !important; /* Match the font size of other buttons */
-      background-color: #28a745 !important;
+      background-color: #28a745 !important; /* 強制 "回景沛首頁" 按鈕背景顏色 */
+      font-size: 40px !important; /* 強制 "回景沛首頁" 按鈕字體大小 */
+      width: 300px !important; /* 強制 "回景沛首頁" 按鈕寬度 */
+      height: 100px !important; /* 強制 "回景沛首頁" 按鈕高度 */
     }
 
     .home-btn:hover {
       background-color: #218838 !important;
     }
 
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
+    /* Larger screens (desktops) */
+    @media (min-width: 1024px) {
+      button {
+        width: 400px !important; /* 桌面按鈕寬度 */
+        height: 150px !important; /* 桌面按鈕高度 */
+        font-size: 50px !important; /* 桌面按鈕字體大小 */
+      }
+
+      .home-btn {
+        width: 400px !important; /* 桌面 "回景沛首頁" 按鈕寬度 */
+        height: 150px !important; /* 桌面 "回景沛首頁" 按鈕高度 */
+        font-size: 50px !important; /* 桌面 "回景沛首頁" 按鈕字體大小 */
+      }
     }
 
-    .modal.active {
-      display: flex;
-    }
+    /* Smaller screens (mobile) */
+    @media (max-width: 768px) {
+      button {
+        width: 200px !important;
+        height: 80px !important;
+        font-size: 25px !important;
+      }
 
-    .modal-content {
-      width: 90%;
-      max-height: 95vh;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .close:hover, .close:focus {
-      color: #bbb;
-      text-decoration: none;
+      .home-btn {
+        width: 200px !important; /* 手機 "回景沛首頁" 按鈕寬度 */
+        height: 80px !important; /* 手機 "回景沛首頁" 按鈕高度 */
+        font-size: 25px !important; /* 手機 "回景沛首頁" 按鈕字體大小 */
+      }
     }
   </style>
 </head>
