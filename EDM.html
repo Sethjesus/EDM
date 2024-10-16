@@ -62,22 +62,20 @@
     }
 
     .page-text {
-      font-size: 2vw; /* Smaller text size */
+      font-size: 2vw;
       color: white;
       text-align: center;
       margin-bottom: 20px;
-      background-color: rgba(15, 134, 4, 0.7); /* Add background directly to the text */
+      background-color: rgba(15, 134, 4, 0.7);
       padding: 5px;
       display: -ms-inline-flexbox;
     }
 
     .controls {
       position: fixed;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
+      bottom: 3px; /* Move buttons closer to the bottom */
+      width: 100%;
+      text-align: center;
       z-index: 3;
     }
 
@@ -90,11 +88,13 @@
       color: white;
       border-radius: 5px;
       transition: background-color 0.3s;
-      margin: 10px 0;
+      margin: 10px;
+      opacity: 0.7; /* Make button semi-transparent */
     }
 
     button:hover {
       background-color: #0056b3;
+      opacity: 1; /* Fully visible when hovered */
     }
 
     .home-btn {
