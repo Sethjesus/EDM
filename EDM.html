@@ -86,62 +86,102 @@
     }
 
     button {
-      width: 300px !important; /* 強制按鈕寬度 */
-      height: 100px !important; /* 強制按鈕高度 */
-      font-size: 40px !important; /* 強制按鈕字體大小 */
+      padding: 60px 140px; /* Larger padding */
+      font-size: 50px; /* Larger font size */
       cursor: pointer;
       border: none;
-      background-color: #007BFF !important; /* 強制背景顏色 */
-      color: white !important; /* 強制文字顏色 */
-      border-radius: 8px !important;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 8px;
       transition: background-color 0.3s;
-      margin: 20px !important;
-      opacity: 0.9 !important;
+      margin: 20px;
+      opacity: 0.8;
     }
 
     button:hover {
-      background-color: #0056b3 !important; /* 強制 hover 時的背景顏色 */
-      opacity: 1 !important;
+      background-color: #0056b3;
+      opacity: 1;
     }
 
     .home-btn {
-      background-color: #28a745 !important; /* 強制 "回景沛首頁" 按鈕背景顏色 */
-      font-size: 40px !important; /* 強制 "回景沛首頁" 按鈕字體大小 */
-      width: 300px !important; /* 強制 "回景沛首頁" 按鈕寬度 */
-      height: 100px !important; /* 強制 "回景沛首頁" 按鈕高度 */
+      background-color: #28a745;
     }
 
     .home-btn:hover {
-      background-color: #218838 !important;
+      background-color: #218838;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-height: 95vh;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close:hover, .close:focus {
+      color: #bbb;
+      text-decoration: none;
     }
 
     /* Larger screens (desktops) */
     @media (min-width: 1024px) {
       button {
-        width: 400px !important; /* 桌面按鈕寬度 */
-        height: 150px !important; /* 桌面按鈕高度 */
-        font-size: 50px !important; /* 桌面按鈕字體大小 */
+        padding: 60px 200px; /* Even larger padding for desktop */
+        font-size: 50px; /* Larger font size for desktop */
       }
 
-      .home-btn {
-        width: 400px !important; /* 桌面 "回景沛首頁" 按鈕寬度 */
-        height: 150px !important; /* 桌面 "回景沛首頁" 按鈕高度 */
-        font-size: 50px !important; /* 桌面 "回景沛首頁" 按鈕字體大小 */
+      .page img {
+        max-width: 70%;
+        max-height: 85%;
+      }
+
+      .page-text {
+        font-size: 1.5vw;
       }
     }
 
     /* Smaller screens (mobile) */
     @media (max-width: 768px) {
       button {
-        width: 200px !important;
-        height: 80px !important;
-        font-size: 25px !important;
+        padding: 30px 60px; /* Smaller padding for mobile */
+        font-size: 18px; /* Smaller font size for mobile */
       }
 
-      .home-btn {
-        width: 200px !important; /* 手機 "回景沛首頁" 按鈕寬度 */
-        height: 80px !important; /* 手機 "回景沛首頁" 按鈕高度 */
-        font-size: 25px !important; /* 手機 "回景沛首頁" 按鈕字體大小 */
+      .page img {
+        width: 90%; /* Larger image size on mobile */
+      }
+
+      .page-text {
+        font-size: 4vw;
       }
     }
   </style>
