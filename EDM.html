@@ -59,6 +59,7 @@
       max-width: 90%;
       max-height: 80%;
       object-fit: contain;
+      cursor: pointer; /* Add cursor pointer to indicate the image is clickable */
     }
 
     .page-text {
@@ -73,7 +74,7 @@
 
     .controls {
       position: fixed;
-      bottom: 3px; /* Move buttons closer to the bottom */
+      bottom: 5px; /* Move buttons closer to the bottom */
       width: 100%;
       text-align: center;
       z-index: 3;
@@ -89,7 +90,7 @@
       border-radius: 5px;
       transition: background-color 0.3s;
       margin: 10px;
-      opacity: 0.7; /* Make button semi-transparent */
+      opacity: 0.8; /* Make button semi-transparent */
     }
 
     button:hover {
@@ -104,6 +105,53 @@
     .home-btn:hover {
       background-color: #218838;
     }
+
+    /* Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9); /* Black background with transparency */
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .modal-content {
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+      from {transform: scale(0)}
+      to {transform: scale(1)}
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close:hover, .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -114,31 +162,31 @@
     <div class="pages" id="slider">
       <div class="page">
         <div class="page-text"><sub>Page 1</sub> 中小企業委外自主探盤查</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM1.jpg?raw=true" alt="Page 1 中小企業委外自主探盤查" class="img-fluid">
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM1.jpg?raw=true" alt="Page 1 中小企業委外自主探盤查" class="img-fluid" onclick="openModal(this)">
       </div>
       <div class="page">
         <div class="page-text"><sub>Page 2</sub> 飯店業冰水主機省電方案</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM2.jpg?raw=true" alt="Page 2 飯店業冰水主機省電方案" class="img-fluid">
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM2.jpg?raw=true" alt="Page 2 飯店業冰水主機省電方案" class="img-fluid" onclick="openModal(this)">
       </div>
       <div class="page">
         <div class="page-text"><sub>Page 3</sub> ESG&EMS產品整合服務管理方案</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM3.jpg?raw=true" alt="Page 3 ESG&EMS產品整合服務管理方案" class="img-fluid">
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM3.jpg?raw=true" alt="Page 3 ESG&EMS產品整合服務管理方案" class="img-fluid" onclick="openModal(this)">
       </div>
       <div class="page">
         <div class="page-text"><sub>Page 4</sub> 中小企業低碳化方案</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM4.jpg?raw=true" alt="Page 4 中小企業低碳化方案" class="img-fluid">
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM4.jpg?raw=true" alt="Page 4 中小企業低碳化方案" class="img-fluid" onclick="openModal(this)">
       </div>
       <div class="page">
         <div class="page-text"><sub>Page 5</sub> 中小製造業低碳化政府補助</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM5.jpg?raw=true" alt="Page 5 中小製造業低碳化政府補助" class="img-fluid">
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM5.jpg?raw=true" alt="Page 5 中小製造業低碳化政府補助" class="img-fluid" onclick="openModal(this)">
       </div>
       <div class="page">
         <div class="page-text"><sub>Page 6</sub> 校園探盤查管理方案</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM6.jpg?raw=true" alt="Page 6 校園探盤查管理方案" class="img-fluid">
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM6.jpg?raw=true" alt="Page 6 校園探盤查管理方案" class="img-fluid" onclick="openModal(this)">
       </div>
       <div class="page">
         <div class="page-text"><sub>Page 7</sub> 半導體及SMT製造業智慧無限能耗管理方案</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM7.jpg?raw=true" alt="Page 7 半導體及SMT製造業智慧無限能耗管理方案" class="img-fluid">
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM7.jpg?raw=true" alt="Page 7 半導體及SMT製造業智慧無限能耗管理方案" class="img-fluid" onclick="openModal(this)">
       </div>
     </div>
   </div>
@@ -148,6 +196,12 @@
     <button id="next" class="btn btn-primary">下一頁</button>
     <button id="stop" class="btn btn-danger">停止</button>
     <a href="https://sethjesus.github.io/Maincarbon/Maincarbon.html?raw=true" class="btn home-btn text-white">回景沛首頁</a>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -208,6 +262,19 @@
     });
 
     startAutoSlide();
+
+    // Modal functionality
+    function openModal(imgElement) {
+      var modal = document.getElementById("myModal");
+      var modalImg = document.getElementById("img01");
+      modal.style.display = "block";
+      modalImg.src = imgElement.src;
+    }
+
+    function closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
   </script>
 
 </body>
