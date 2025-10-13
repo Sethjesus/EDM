@@ -1,208 +1,203 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>政府補助</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>政府補助方案展示</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Baloo+2:wght@600&display=swap" rel="stylesheet"/>
 
-  <!-- ✅ 加入可愛字體 -->
-  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Baloo+2:wght@600&display=swap" rel="stylesheet">
-  
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-image: url('https://github.com/Sethjesus/Photo/blob/main/EDM10.jpg?raw=true');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+<style>
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    background: #000;
+  }
 
-    .container-fluid {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
+  .bg-wrap{
+    position: fixed; inset: 0; z-index: 0;
+  }
+  .bg{
+    position: absolute; inset: 0;
+    background: url('https://github.com/Sethjesus/Photo/blob/main/EDM10.jpg?raw=true') center/cover no-repeat;
+    filter: brightness(1) saturate(1.1);
+  }
 
-    .pages {
-      display: flex;
-      width: 900vw; /* 9頁幻燈片 */
-      transition: transform 0.8s ease-in-out;
-    }
+  .container-fluid {
+    position: relative; z-index: 1;
+    width: 100vw; height: 100dvh; overflow: hidden;
+  }
 
-    .page {
-      min-width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background: rgba(0, 0, 0, 0.4);
-    }
+  .pages {
+    display: flex; height: 100%;
+    transition: transform 0.8s ease-in-out;
+    width: calc(var(--count, 1) * 100vw);
+  }
 
-    .page img {
-      width: 60%;
-      max-height: 75%;
-      object-fit: contain;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+  .page {
+    min-width: 100vw; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background: none;
+    user-select: none;
+  }
 
-    .page img:hover {
-      transform: scale(1.05);
-    }
+  .page-text {
+    font-family: 'ZCOOL KuaiLe','Baloo 2',cursive,'Microsoft JhengHei',sans-serif;
+    font-size: clamp(18px, 2.4vw, 32px);
+    letter-spacing: 2px; color: #fff8d6;
+    text-shadow: 2px 2px 8px rgba(0,0,0,.8);
+    margin-bottom: 10px; padding: 8px 15px; border-radius: 12px;
+    background: rgba(0,0,0,0.5);
+  }
 
-    /* ✅ 可愛字體樣式 */
-    .page-text {
-      font-family: 'ZCOOL KuaiLe', 'Baloo 2', cursive, 'Microsoft JhengHei', sans-serif;
-      font-size: 2.5vw;
-      letter-spacing: 2px;
-      color: #fff9c4;
-      text-align: center;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-      background-color: rgba(255, 182, 193, 0.15);
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: 2px dashed #ffe57f;
-    }
+  .page img{
+    width: 70%; max-height: 80%; object-fit: contain;
+    transition: transform .3s ease;
+  }
+  .page img:hover{ transform: scale(1.03); }
 
-    .controls {
-      position: fixed;
-      bottom: 15px;
-      width: 100%;
-      text-align: center;
-    }
-    
-    .controls button, .home-btn {
-      padding: 8px 15px;
-      font-size: 14px;
-      cursor: pointer;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      transition: background-color 0.3s, transform 0.2s;
-      margin: 5px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
+  @media (max-width: 768px){
+    .page img{ width: 90%; max-height: 82%; }
+  }
 
-    .controls button {
-      background-color: #007BFF;
-    }
+  .pagination-dots{
+    position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 2;
+    transition: opacity .25s ease;
+  }
+  .dot{ width: 12px; height: 12px; background: #bbb; border-radius: 50%;
+        transition: background .3s, transform .2s; }
+  .dot.active{ background: #ffd54f; transform: scale(1.3); }
 
-    .home-btn {
-      background-color: #28a745; /* 綠色按鈕 */
-      text-decoration: none;
-      display: inline-block;
-    }
+  .controls{
+    position: fixed; bottom: 12px; left: 0; right: 0; text-align: center; z-index: 2;
+    transition: opacity .25s ease;
+  }
+  .controls button, .home-btn{
+    padding: 8px 15px; font-size: 14px; border: none; border-radius: 5px;
+    color: #fff; cursor: pointer; margin: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,.2);
+    transition: background-color .3s, transform .2s;
+  }
+  .controls button{ background: #007BFF; }
+  .home-btn{ background: #28a745; text-decoration: none; display: inline-block; }
+  .home-btn:hover{ background: #218838; transform: scale(1.05); }
 
-    .home-btn:hover {
-      background-color: #218838;
-      transform: scale(1.05);
-    }
-  </style>
+  .fader{
+    position: fixed; inset: 0; z-index: 3;
+    background: #000; pointer-events: none; opacity: 0;
+    transition: opacity .4s ease;
+  }
+  .fader.show{ opacity: .25; }
+
+  /* === 觸控區 === */
+  .hidden-ui { opacity: 0; pointer-events: none; }
+  @media (pointer: coarse) {
+    .controls button, .home-btn { padding: 12px 18px; font-size: 16px; }
+  }
+  .touch-hotzone {
+    position: fixed; top: 0; bottom: 0; width: 20vw;
+    z-index: 2;
+  }
+  .touch-hotzone.left { left: 0; }
+  .touch-hotzone.right { right: 0; }
+</style>
 </head>
 <body>
 
+  <div class="bg-wrap"><div class="bg"></div></div>
+
   <div class="container-fluid">
     <div class="pages" id="slider">
-      <div class="page">
-        <div class="page-text">🌸 校園能耗管理 🌸</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM1.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">🍃 校園碳盤查 🍃</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM2.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">✨ 半導體製造業 ✨</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM3.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">💧 淨零低碳化服務 💧</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM4.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">☀️ 陽光空氣水方案 ☁️</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM5.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">⚡ 智慧能源管理 ISO50001 ⚡</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM6.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">🏯 宮廟16+4碳盤查補助 🏯</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM7.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">🌿 低碳旅遊 🌿</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM8.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">🌏 ISO-14067碳足跡認證 🌏</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM9.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
-      <div class="page">
-        <div class="page-text">🌏 量販百貨智慧管理方案 🌏</div>
-        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM19.jpg?raw=true" onclick="toggleFullscreen(this)">
-      </div>
+      <div class="page"><div class="page-text">🌸 校園能耗管理 🌸</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM1.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">🍃 校園碳盤查 🍃</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM2.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">✨ 半導體製造業 ✨</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM3.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">💧 淨零低碳化服務 💧</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM4.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">☀️ 陽光空氣水方案 ☁️</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM5.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">⚡ ISO50001智慧能源 ⚡</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM6.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">🏯 宮廟16+4碳盤查補助 🏯</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM7.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">🌿 低碳旅遊 🌿</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM8.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">🌏 ISO-14067碳足跡認證 🌏</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM9.jpg?raw=true"></div>
+      <div class="page"><div class="page-text">🏬 量販百貨智慧能源管理方案 🏬</div><img src="https://github.com/Sethjesus/Photo/blob/main/EDM19.jpg?raw=true"></div>
     </div>
   </div>
 
+  <div class="pagination-dots" id="dots"></div>
   <div class="controls">
     <button id="prev">上一頁</button>
     <button id="next">下一頁</button>
     <button id="stop">停止</button>
     <a href="https://jpesg.netlify.app/" class="home-btn">回景煬首頁</a>
   </div>
+  <div class="touch-hotzone left"  id="hotLeft"></div>
+  <div class="touch-hotzone right" id="hotRight"></div>
+  <div class="fader" id="fader"></div>
 
-  <script>
-    let currentIndex = 0;
-    const slider = document.getElementById('slider');
-    const totalPages = document.querySelectorAll('.page').length;
-    let autoSlide;
+<script>
+let currentIndex = 0;
+const slider = document.getElementById('slider');
+const pages  = document.querySelectorAll('.page');
+const totalPages = pages.length;
+slider.style.setProperty('--count', totalPages);
 
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+const dotsWrap = document.getElementById('dots');
+for (let i=0;i<totalPages;i++){
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i===0?' active':'');
+  dot.addEventListener('click', () => animateSlideChange(()=>{ currentIndex=i; updateSlider(); }));
+  dotsWrap.appendChild(dot);
+}
+const dots = document.querySelectorAll('.dot');
+function updateSlider(){
+  slider.style.transform = `translateX(-${currentIndex*100}vw)`;
+  dots.forEach((d,i)=>d.classList.toggle('active', i===currentIndex));
+}
+const fader = document.getElementById('fader');
+async function animateSlideChange(doChange){
+  fader.classList.add('show');
+  await new Promise(r=>setTimeout(r,120));
+  doChange();
+  await new Promise(r=>setTimeout(r,250));
+  fader.classList.remove('show');
+}
+function nextPage(){ currentIndex = (currentIndex+1)%totalPages; updateSlider(); }
+function prevPage(){ currentIndex = (currentIndex-1+totalPages)%totalPages; updateSlider(); }
+document.getElementById('next').onclick = () => animateSlideChange(nextPage);
+document.getElementById('prev').onclick = () => animateSlideChange(prevPage);
+let autoSlide = setInterval(()=>animateSlideChange(nextPage), 6000);
+document.getElementById('stop').onclick = () => clearInterval(autoSlide);
+
+/* ==== 觸控增強 ==== */
+const controlsBar = document.querySelector('.controls');
+const dotsBar = document.getElementById('dots');
+let uiHidden=false;
+const isTouch = matchMedia('(pointer: coarse)').matches;
+function swipeThreshold(){ const vw=Math.max(document.documentElement.clientWidth||0,window.innerWidth||0); return Math.max(30,Math.min(80,Math.round(vw*0.06))); }
+
+if(isTouch){
+  let tapTimer=null,tapX=0,tapY=0;
+  slider.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1)return;
+    tapX=e.touches[0].clientX; tapY=e.touches[0].clientY;
+    tapTimer=setTimeout(()=>{ if(autoSlide){ clearInterval(autoSlide); autoSlide=null; }},500);
+  },{passive:true});
+  slider.addEventListener('touchend',e=>{
+    if(tapTimer){clearTimeout(tapTimer);tapTimer=null;}
+    if(!autoSlide)autoSlide=setInterval(()=>animateSlideChange(nextPage),6000);
+    const dx=e.changedTouches[0].clientX-tapX,dy=e.changedTouches[0].clientY-tapY;
+    if(Math.abs(dx)<5&&Math.abs(dy)<5){
+      uiHidden=!uiHidden;
+      controlsBar.classList.toggle('hidden-ui',uiHidden);
+      dotsBar.classList.toggle('hidden-ui',uiHidden);
     }
-
-    function nextPage() {
-      currentIndex = (currentIndex + 1) % totalPages;
-      updateSlider();
-    }
-
-    function prevPage() {
-      currentIndex = (currentIndex - 1 + totalPages) % totalPages;
-      updateSlider();
-    }
-
-    function startAutoSlide() {
-      autoSlide = setInterval(nextPage, 6000);
-    }
-
-    function stopAutoSlide() {
-      clearInterval(autoSlide);
-    }
-
-    document.getElementById('next').addEventListener('click', nextPage);
-    document.getElementById('prev').addEventListener('click', prevPage);
-    document.getElementById('stop').addEventListener('click', stopAutoSlide);
-
-    startAutoSlide();
-
-    function toggleFullscreen(img) {
-      if (!document.fullscreenElement) {
-        img.requestFullscreen();
-      } else {
-        document.exitFullscreen();
-      }
-    }
-  </script>
-
+  },{passive:true});
+}
+let tStartX=0,tStartY=0,tDx=0,tDy=0,tSwiping=false;
+slider.addEventListener('touchstart',e=>{const t=e.touches[0];tStartX=t.clientX;tStartY=t.clientY;tDx=tDy=0;tSwiping=false;},{passive:true});
+slider.addEventListener('touchmove',e=>{const t=e.touches[0];tDx=t.clientX-tStartX;tDy=t.clientY-tStartY;if(!tSwiping&&Math.abs(tDx)>10&&Math.abs(tDy)/Math.abs(tDx)<0.6){tSwiping=true;e.preventDefault();}},{passive:false});
+slider.addEventListener('touchend',()=>{if(tSwiping&&Math.abs(tDx)>swipeThreshold()){tDx<0?animateSlideChange(nextPage):animateSlideChange(prevPage);}tStartX=tStartY=tDx=tDy=0;tSwiping=false;});
+document.getElementById('hotLeft').addEventListener('touchend',()=>animateSlideChange(prevPage),{passive:true});
+document.getElementById('hotRight').addEventListener('touchend',()=>animateSlideChange(nextPage),{passive:true});
+</script>
 </body>
 </html>
