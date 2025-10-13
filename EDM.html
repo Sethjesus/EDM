@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>政府補助</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- ✅ 加入可愛字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Baloo+2:wght@600&display=swap" rel="stylesheet">
   
   <style>
     body, html {
@@ -54,14 +57,19 @@
       transform: scale(1.05);
     }
 
+    /* ✅ 可愛字體樣式 */
     .page-text {
-      font-size: 2vw;
-      color: white;
+      font-family: 'ZCOOL KuaiLe', 'Baloo 2', cursive, 'Microsoft JhengHei', sans-serif;
+      font-size: 2.5vw;
+      letter-spacing: 2px;
+      color: #fff9c4;
       text-align: center;
       margin-bottom: 10px;
-      background-color: rgba(12, 176, 182, 0.0);
-      padding: 10px;
-      border-radius: 5px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      background-color: rgba(255, 182, 193, 0.15);
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 2px dashed #ffe57f;
     }
 
     .controls {
@@ -103,43 +111,41 @@
 
   <div class="container-fluid">
     <div class="pages" id="slider">
-     <div class="page">
-  <div class="page-text"><sub>Page 1</sub></div>
-  <img src="https://i.imgur.com/wqoBehz.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 2</sub></div>
-  <img src="https://i.imgur.com/WEPePD7.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 3</sub></div>
-  <img src="https://i.imgur.com/YSajBEk.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 4</sub></div>
-  <img src="https://i.imgur.com/trwUqX8.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 5</sub></div>
-  <img src="https://i.imgur.com/E6fFOxT.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 6</sub></div>
-  <img src="https://i.imgur.com/Ur6VVxy.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 7</sub></div>
-  <img src="https://i.imgur.com/4EWWLxx.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 8</sub></div>
-  <img src="https://i.imgur.com/uw4UGrk.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-<div class="page">
-  <div class="page-text"><sub>Page 9</sub></div>
-  <img src="https://i.imgur.com/PTspQwb.jpg" onclick="toggleFullscreen(this)" loading="lazy">
-</div>
-
+      <div class="page">
+        <div class="page-text">🌸 校園能耗管理 🌸</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM1.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">🍃 校園碳盤查 🍃</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM2.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">✨ 半導體製造業 ✨</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM3.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">💧 淨零低碳化服務 💧</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM4.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">☀️ 陽光空氣水方案 ☁️</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM5.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">⚡ 智慧能源管理 ISO50001 ⚡</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM6.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">🏯 宮廟16+4碳盤查補助 🏯</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM7.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">🌿 低碳旅遊 🌿</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM8.jpg?raw=true" onclick="toggleFullscreen(this)">
+      </div>
+      <div class="page">
+        <div class="page-text">🌏 ISO-14067碳足跡認證 🌏</div>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/EDM9.jpg?raw=true" onclick="toggleFullscreen(this)">
       </div>
     </div>
   </div>
@@ -148,7 +154,7 @@
     <button id="prev">上一頁</button>
     <button id="next">下一頁</button>
     <button id="stop">停止</button>
-    <a href="https://jpesg.netlify.app/" class="home-btn">回景煬首頁</a>
+    <a href="https://jpesg.netlify.app/" class="home-btn">回景沛首頁</a>
   </div>
 
   <script>
