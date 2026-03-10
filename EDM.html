@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  <title>EDM置中 · 兩欄緊貼EDM</title>
+  <title>UDM ESG</title>
   <!-- Bootstrap 4 基礎 -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
   <!-- 活潑字體 -->
@@ -56,7 +56,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 20px;
+      padding: 0 10px;
       user-select: none;
     }
 
@@ -66,7 +66,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      margin-right: 10px;
+      margin-right: 8px;
       height: 100%;
     }
 
@@ -83,7 +83,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      margin-left: 10px;
+      margin-left: 8px;
       height: 100%;
     }
 
@@ -155,11 +155,11 @@
       box-shadow: 0 0 15px #ffb347;
     }
 
-    /* EDM圖片 */
+    /* EDM圖片 - 預設電腦版 */
     .page img {
       width: auto;
       height: auto;
-      max-width: 60vw;  /* 根據左右欄寬度動態調整 */
+      max-width: 65vw;
       max-height: 85vh;
       object-fit: contain;
       border-radius: 24px;
@@ -313,14 +313,22 @@
       border-radius: 0;
     }
 
-    /* 手機版優化 - 三欄依然緊貼EDM */
+    /* ===== 手機版優化 - EDM大幅放大 ===== */
     @media (max-width: 768px) {
       .page {
-        padding: 0 10px;
+        padding: 0 5px;
+      }
+      
+      .left-column {
+        margin-right: 5px;
+      }
+      
+      .right-column {
+        margin-left: 5px;
       }
       
       .page-text {
-        font-size: 20px;
+        font-size: 22px;
         padding: 15px 10px;
         min-height: 150px;
       }
@@ -331,25 +339,22 @@
       }
       
       .page-dot {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
       }
       
+      /* 手機版EDM放大 - 從55vw -> 75vw */
       .page img {
-        max-width: 55vw;
-        max-height: 75vh;
+        max-width: 75vw;
+        max-height: 80vh;
       }
     }
 
     @media (max-width: 480px) {
-      .page {
-        padding: 0 5px;
-      }
-      
       .page-text {
-        font-size: 16px;
+        font-size: 20px;
         padding: 12px 8px;
-        min-height: 120px;
+        min-height: 130px;
         border-width: 1px;
       }
       
@@ -359,26 +364,42 @@
       }
       
       .page-dot {
-        width: 10px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
       }
       
+      /* 小手機EDM再放大 - 從50vw -> 80vw */
       .page img {
-        max-width: 50vw;
-        max-height: 70vh;
+        max-width: 80vw;
+        max-height: 75vh;
       }
     }
 
     /* 非常窄的螢幕特殊處理 */
     @media (max-width: 360px) {
       .page-text {
-        font-size: 14px;
+        font-size: 18px;
         padding: 10px 6px;
-        min-height: 100px;
+        min-height: 110px;
       }
       
+      .page-dot {
+        width: 10px;
+        height: 10px;
+      }
+      
+      /* 超窄手機EDM最大極限 */
       .page img {
-        max-width: 45vw;
+        max-width: 82vw;
+        max-height: 70vh;
+      }
+    }
+
+    /* 平板橫放優化 */
+    @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+      .page img {
+        max-width: 70vw;
+        max-height: 85vh;
       }
     }
   </style>
